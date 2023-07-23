@@ -31,9 +31,16 @@ import { AudioState } from './audio/AudioState'
 import { CameraComponent } from './camera/components/CameraComponent'
 import { Engine } from './ecs/classes/Engine'
 import { EngineActions, EngineState } from './ecs/classes/EngineState'
+<<<<<<< HEAD
+//onboardxr
+import { sockSysClass } from './onboardxr/socketSystem'
+=======
 import { getComponent } from './ecs/functions/ComponentFunctions'
+>>>>>>> dfcebf0ed79c223bfd62ab351e4e23d10ef3eaa1
 import { EngineRenderer } from './renderer/WebGLRendererSystem'
 import { ObjectLayers } from './scene/constants/ObjectLayers'
+
+//onboardxrend
 
 /**
  * initializeBrowser
@@ -70,6 +77,14 @@ export const initializeBrowser = () => {
 
   setupInitialClickListener()
   Engine.instance.engineTimer.start()
+
+  //onboardxr
+  const qs = new URLSearchParams(location.search)
+  if (qs.has('r')) {
+    const sockSys = new sockSysClass(qs.get('r'))
+    sockSys.auth()
+  }
+  //onboardxr
 }
 
 const setupInitialClickListener = () => {
