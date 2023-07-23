@@ -23,18 +23,20 @@ All portions of the code written by the Ethereal Engine team are Copyright © 20
 Ethereal Engine. All Rights Reserved.
 */
 
-import _ from 'lodash'
-
 import { BotUserAgent } from '@etherealengine/common/src/constants/BotUserAgent'
 import { dispatchAction, getMutableState } from '@etherealengine/hyperflux'
 import { WebLayerManager } from '@etherealengine/xrui'
 
-import { loadDRACODecoderNode } from './assets/loaders/gltf/NodeDracoLoader'
 import { AudioState } from './audio/AudioState'
+import { CameraComponent } from './camera/components/CameraComponent'
 import { Engine } from './ecs/classes/Engine'
 import { EngineActions, EngineState } from './ecs/classes/EngineState'
+<<<<<<< HEAD
 //onboardxr
 import { sockSysClass } from './onboardxr/socketSystem'
+=======
+import { getComponent } from './ecs/functions/ComponentFunctions'
+>>>>>>> dfcebf0ed79c223bfd62ab351e4e23d10ef3eaa1
 import { EngineRenderer } from './renderer/WebGLRendererSystem'
 import { ObjectLayers } from './scene/constants/ObjectLayers'
 
@@ -56,11 +58,13 @@ export const initializeBrowser = () => {
   audioState.cameraGainNode.set(cameraGainNode)
   cameraGainNode.connect(audioContext.destination)
 
-  Engine.instance.camera.layers.disableAll()
-  Engine.instance.camera.layers.enable(ObjectLayers.Scene)
-  Engine.instance.camera.layers.enable(ObjectLayers.Avatar)
-  Engine.instance.camera.layers.enable(ObjectLayers.UI)
-  Engine.instance.camera.layers.enable(ObjectLayers.TransformGizmo)
+  const camera = getComponent(Engine.instance.cameraEntity, CameraComponent)
+
+  camera.layers.disableAll()
+  camera.layers.enable(ObjectLayers.Scene)
+  camera.layers.enable(ObjectLayers.Avatar)
+  camera.layers.enable(ObjectLayers.UI)
+  camera.layers.enable(ObjectLayers.TransformGizmo)
 
   getMutableState(EngineState).isBot.set(navigator.userAgent === BotUserAgent)
 
