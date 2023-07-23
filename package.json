@@ -51,7 +51,7 @@
     "dev-agones-silent": "npm run dev-agones &> /dev/null",
     "dev-client": "cd packages/client && npm run dev",
     "dev-taskserver": "cd packages/taskserver && npm run dev",
-    "dev-docker": "cd scripts && docker-compose up -d",
+    "dev-docker": "cd scripts && docker compose up -d",
     "dev-tabs": "cd scripts && ./dev-tabs.sh",
     "fetch-projects": "lerna exec 'git fetch -p && git rebase' --parallel --ignore @etherealengine/*",
     "dev-reinit": "npm run dev-docker && cd packages/server && npm run dev-reinit-db",
@@ -138,6 +138,7 @@
     "dotenv": "16.0.3",
     "fix-esm": "^1.0.1",
     "patch-package": "^6.5.1",
+    "socket.io-client": "^4.7.1",
     "three": "0.150.1",
     "ts-node": "10.9.1",
     "typescript": "5.0.2"
